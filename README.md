@@ -38,15 +38,22 @@ Plain English works too: "find me good talks about creativity".
 
 ## Optional setup (better data)
 
-It works out of the box with web search and page fetches. For fuller metadata and transcripts, install `yt-dlp` and optionally set a YouTube Data API key, then run the checker:
+**No API key is needed.** The skill works out of the box with web search and page fetches. For fuller metadata and transcripts, the one recommended add-on is `yt-dlp`:
 
 ```bash
-brew install yt-dlp                      # or: pip install yt-dlp
-export YOUTUBE_API_KEY=...               # optional, YouTube Data API v3
+brew install yt-dlp    # or: pip install yt-dlp
 ~/.claude/skills/video-scout/scripts/check-setup.sh
 ```
 
-The checker reports what is installed and creates `~/.video-scout/`. Without these tools, more metrics show as `N/A` and scores are capped at "Good" because they rest on metadata only. Keep API keys out of this folder and never commit them.
+The checker reports what is installed and creates `~/.video-scout/`.
+
+| Setup | What you get |
+|---|---|
+| Nothing extra | Search and page fetches. TED works well (the ted.com page has the transcript). Some YouTube metrics show as `N/A`, and scores are capped at "Good" because they rest on metadata only. |
+| `yt-dlp` (recommended) | Full YouTube metadata (views, likes, comments, chapters, availability) and timestamped transcripts, with no key. |
+| `YOUTUBE_API_KEY` (optional) | The official YouTube Data API is tried first when `export YOUTUBE_API_KEY=...` is set. It is rarely necessary if `yt-dlp` is installed. |
+
+Keep API keys out of this folder and never commit them.
 
 On the first run Claude Code may ask permission to write to `~/.video-scout/`. The skill pre-approves search, fetch, `yt-dlp`, `jq`, and `mkdir`, so you should see few other prompts.
 

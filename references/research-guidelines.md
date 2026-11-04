@@ -84,7 +84,7 @@ Prefer a segment with a clear hook, one coherent idea, and a satisfying takeaway
 
 ## Historical deduplication
 
-Convention: reports are saved in the output directory (default `video-scout-reports/`) together with a cumulative `catalog-index.json` listing every video previously recommended **or rejected**, with `video_id`/URL, title, speaker, and date.
+Convention: reports are saved in the output directory (default `~/.video-scout/`) together with a cumulative `catalog-index.json` listing every video previously recommended **or rejected**, with `video_id`/URL, title, speaker, and date.
 
 Before searching:
 1. Look for `catalog-index.json` (and any previous `catalog*.json` / report files) in the output directory or a user-given path.

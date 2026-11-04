@@ -49,7 +49,7 @@ With neither, more metrics show as `N/A` and scores are capped at "Good" because
 
 ## What you get
 
-Files are written to `video-scout-reports/` in your project and never overwrite earlier ones:
+Files are written to `~/.video-scout/` (created automatically, shared across projects) and never overwrite earlier ones:
 
 - `report-YYYY-MM-DD.md`: the readable shortlist with links, scores, and reasons.
 - `catalog-YYYY-MM-DD.json`: structured data for other tools, including `handoff_ready`.

@@ -96,7 +96,7 @@ Identify up to 1–3 promising segments per strong candidate, only when a transc
 
 ### 8. Deliver
 
-Produce a Markdown report and a JSON catalog, and update `catalog-index.json`, using `references/output-format.md` for layout, schema, file names, and default location (`video-scout-reports/`). Every recommendation needs a direct clickable canonical URL.
+Produce a Markdown report and a JSON catalog, and update `catalog-index.json`, using `references/output-format.md` for layout, schema, file names, and default location (`~/.video-scout/`). Every recommendation needs a direct clickable canonical URL.
 
 ## Safety, accuracy, and rights
 

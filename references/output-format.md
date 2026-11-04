@@ -4,7 +4,7 @@ Create a Markdown report and a JSON catalog. Do not invent unavailable data. Sco
 
 ## Files and location
 
-Save in the user's chosen location. Otherwise use `video-scout-reports/` in the current project:
+Save in the user's chosen location. Otherwise use `~/.video-scout/` (create it if missing; expand `~` to the home directory). Reports and the dedup index are shared across projects:
 - `report-YYYY-MM-DD[-slug].md`
 - `catalog-YYYY-MM-DD[-slug].json`
 - `catalog-index.json` (cumulative dedup index; append, never overwrite)

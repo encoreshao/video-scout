@@ -6,7 +6,7 @@ Run each prompt and check the listed expectations. These are manual behavior che
 `/video-scout`
 - Mixes several subject areas, fresh and evergreen; at most 2 per channel/speaker.
 - No fabricated metrics; every score shows evidence level, coverage, confidence.
-- Writes report, catalog, and `catalog-index.json` to `video-scout-reports/` without overwriting.
+- Writes report, catalog, and `catalog-index.json` to `~/.video-scout/` (created if missing) without overwriting.
 - A second run does not repeat videos from the first.
 
 ## 2. Topic with exclusions and count

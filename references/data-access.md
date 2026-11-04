@@ -11,13 +11,22 @@ Try in order; stop at the first that gives reliable data for the field you need.
 | Need | 1st choice | Fallback |
 |---|---|---|
 | Discover candidates | Web search with several query formulations, `site:ted.com/talks`, `site:youtube.com` | YouTube search pages, channel/playlist pages of credible publishers |
-| YouTube metadata (title, channel, date, duration, views, likes, comments, chapters) | YouTube Data API v3 `videos.list` (`snippet,contentDetails,statistics`) if a key is configured | `yt-dlp --dump-json --skip-download <url>` if installed; then the watch page via a fetch tool; then oEmbed (title/channel only) |
-| YouTube captions | `yt-dlp --skip-download --write-subs --write-auto-subs --sub-langs "en.*,zh.*" --sub-format vtt` to a scratch directory | Transcript shown on the watch page; note that auto-captions are lower reliability |
+| YouTube metadata (title, channel, date, duration, views, likes, comments, chapters) | YouTube Data API v3 `videos.list` (`snippet,contentDetails,statistics,status`; key from the `YOUTUBE_API_KEY` environment variable) if configured | `yt-dlp --dump-json --skip-download <url> 2>/dev/null` if installed (send stderr away so the JSON stays parseable); then the watch page via a fetch tool; then oEmbed (title/channel only) |
+| YouTube captions | `yt-dlp --skip-download --write-subs --write-auto-subs --sub-langs "en" --sub-format vtt -o "<scratch>/%(id)s" <url>` into a scratch/temp directory, then delete the files | Transcript shown on the watch page; note that auto-captions are lower reliability |
 | TED/TEDx metadata and transcript | The `ted.com/talks/<slug>` page (title, speaker, date, duration, transcript, language list) | The talk's YouTube upload on the official TED / TEDx channel |
 | Comments (optional, costly) | YouTube Data API `commentThreads.list`, or `yt-dlp --write-comments` | Skip and mark comment quality `N/A` |
 | Playback inspection | Only if a tool genuinely exposes audio/video (e.g. frame sampling plus an audio quality probe) | Otherwise `evidence_level` stays at `transcript` or `metadata_only` |
 
 Do not use third-party "view count" aggregators or scraped stat sites as the metric source. If the only metric source is unofficial, mark the value `null` with a note.
+
+### Verified `yt-dlp` fields
+
+Tested against a real TED upload. Useful JSON fields: `id`, `title`, `channel`, `upload_date`, `duration`, `view_count`, `like_count`, `comment_count`, `chapters`, `license` (null when no Creative Commons label), `availability` (`public`), `live_status`, `subtitles` (human-made caption languages) and `automatic_captions` (machine-generated). Set `transcript.auto_generated` to `true` only when no entry exists in `subtitles` for the language used.
+
+Caption caveats:
+- Request exact language codes (`en`, `zh-Hans`). Wildcards such as `en.*` also request dozens of auto-translated variants and trigger HTTP 429 rate limits.
+- On a 429 or similar error, stop retrying, fall back to the page transcript, and note the limit. Do not loop.
+- Caption files are temporary working data: read them, then delete them.
 
 ## Canonical URLs
 

@@ -38,14 +38,17 @@ Plain English works too: "find me good talks about creativity".
 
 ## Optional setup (better data)
 
-It works out of the box using web search and page fetches, but coverage is better with either of these:
+It works out of the box with web search and page fetches. For fuller metadata and transcripts, install `yt-dlp` and optionally set a YouTube Data API key, then run the checker:
 
 ```bash
-brew install yt-dlp        # or: pip install yt-dlp
-export YOUTUBE_API_KEY=... # optional, YouTube Data API v3
+brew install yt-dlp                      # or: pip install yt-dlp
+export YOUTUBE_API_KEY=...               # optional, YouTube Data API v3
+~/.claude/skills/video-scout/scripts/check-setup.sh
 ```
 
-With neither, more metrics show as `N/A` and scores are capped at "Good" because they rest on metadata only. Keep API keys out of this folder, and never commit them.
+The checker reports what is installed and creates `~/.video-scout/`. Without these tools, more metrics show as `N/A` and scores are capped at "Good" because they rest on metadata only. Keep API keys out of this folder and never commit them.
+
+On the first run Claude Code may ask permission to write to `~/.video-scout/`. The skill pre-approves search, fetch, `yt-dlp`, `jq`, and `mkdir`, so you should see few other prompts.
 
 ## What you get
 
@@ -69,6 +72,7 @@ Quality first, popularity last. Seven weighted dimensions: content depth (30), p
 
 ```text
 SKILL.md                      skill entry point
+scripts/check-setup.sh        optional dependency checker
 references/data-access.md     how metadata, captions, licenses are fetched
 references/quality-scoring.md rubric and adjusted score
 references/research-guidelines.md  discovery and screening rules

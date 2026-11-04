@@ -79,6 +79,26 @@ Specific ideas rather than generic motivation; evidence, examples, demonstration
 
 Score only when freshness matters (fast-moving fields such as AI, medicine, policy, security, markets). For evergreen subjects mark it structurally unavailable (excluded), so older talks are not penalized. For fast-moving fields, also check whether the video's factual claims are now outdated.
 
+### Worked example
+
+A YouTube talk, `transcript` evidence, no playback, comments not read:
+
+| Dimension | Weight | Score | Status |
+|---|---:|---:|---|
+| Content depth | 30 | 9 | assessed |
+| Production | 25 | n/a | unassessed |
+| Credibility | 15 | 9 | assessed |
+| Presentation | 10 | 8 | assessed |
+| Engagement | 10 | n/a | unassessed (YouTube exposes comments, not read) |
+| Popularity | 5 | 9 | assessed |
+| Recency | 5 | n/a | structurally unavailable (evergreen) |
+
+- Assessed weight = 30+15+10+5 = 60, so `raw = 100 × (2.7 + 1.35 + 0.8 + 0.45) / 60 = 88.3`.
+- Applicable weight (recency excluded) = 95, so `coverage = 60 / 95 = 0.63`.
+- `adjusted = 88.3 − 10 × (1 − 0.63) = 84.6` → grade **Excellent**, confidence **medium** (transcript evidence).
+
+The same talk on TED, where popularity and engagement are structurally unavailable, (with the same scores for content depth, credibility, and presentation) would have applicable weight 80 (recency, popularity, and engagement excluded) and assessed weight 55, so coverage `0.69`. The missing popularity and engagement data cost it nothing; only the unassessed production dimension does.
+
 ## Grades
 
 | Adjusted score | Grade | Use |

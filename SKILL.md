@@ -1,11 +1,15 @@
 ---
 name: video-scout
 description: Find, evaluate, rank, and curate high-quality public videos from TED/TEDx, YouTube, universities, and other reputable sources. Use when the user asks to "find good talks about X", "what should I watch", for daily video recommendations, topic research, topic-free discovery, popular or trending videos, a review of a specific video URL, or a shortlist of source videos to hand to another workflow.
+argument-hint: "[topic or video URL] [--top N] [--source youtube|ted|all] [--sort quality|popularity|trending|recent] [--since DATE] [--exclude \"a, b\"]"
+allowed-tools: WebSearch, WebFetch, Read, Write, Glob, Grep, Bash(yt-dlp:*), Bash(jq:*), Bash(mkdir:*)
 ---
 
 # Video Scout
 
 Discover excellent public videos and return a selective, evidence-based shortlist. This skill is for **finding and evaluating source videos only**. It does not download media, edit, translate, write scripts, or generate videos. The user may pass selected source URLs to a separate workflow such as `inspire-video`.
+
+User input: $ARGUMENTS
 
 ## Core principle
 
@@ -86,7 +90,7 @@ Verify each recommended URL is available (public, not deleted, not live, members
 
 ### 6. Score
 
-Use `references/quality-scoring.md`: it defines the seven weighted dimensions, required dimensions, evidence levels, the adjusted score, grades, and confidence. Do not restate or alter the numbers elsewhere. Every score reports its evidence level, coverage, and confidence. A metadata-only score is never "Exceptional".
+Use `references/quality-scoring.md`: it defines the seven weighted dimensions, required dimensions, evidence levels, the adjusted score, grades, and confidence. Do not restate or alter the numbers elsewhere. Every score reports its evidence level, coverage, and confidence. A metadata-only score is capped at "Good".
 
 Ranking: adjusted score, then confidence, then content depth. If the user explicitly asks for "most viewed regardless of quality", honor it and label the list popularity-ranked. Never compare raw views without considering date, channel size, and platform.
 
